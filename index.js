@@ -7,8 +7,13 @@ const app = express()
 app.set('view engine', 'pug')
 app.set('views', './views')
 
+// Find static folder
+app.use(express.static('public'))
+
 // Routing user authentication
 app.use('/auth', router)
+
+
 
 // Config express
 const port = 3000

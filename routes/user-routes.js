@@ -1,12 +1,12 @@
 import express from 'express'
-import { formLogin } from '../controllers/user-controller.js'
+import { formLogin, formRegsitry, formRestorePass } from '../controllers/user-controller.js'
 
 const router = express()
 
 router.get('/login', formLogin)
 
-router.post('/', (req, res) =>{
-    res.json({msj: "hola post"})
-})
+router.get('/registrar', formRegsitry)
+
+router.get('/restablecer-password', formRestorePass)
 
 export default router;
