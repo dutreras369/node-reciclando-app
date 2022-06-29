@@ -1,7 +1,16 @@
 import express from 'express'
 import router  from './routes/user-routes.js'
-
+import db from './config/db.js'
+// Create app
 const app = express()
+
+// Sincronized dbs
+try {
+    db.authenticate();
+    console.log('Contectado al servidor')  
+} catch (error) {
+    console.log(error)
+}
 
 // Up Pug
 app.set('view engine', 'pug')
