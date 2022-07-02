@@ -5,11 +5,16 @@ const formLogin = (req, res) => {
     } )
 }
 
-const formRegsitry = (req, res) => {
+const formRegistry = (req, res) => {
 
-    res.render('auth/registro', {
+    res.render('auth/registry', {
         page: "Crear Cuenta"
     } )
+}
+
+const saveRegistry = (req, res) => {
+    console.log(req.body)
+
 }
 
 const formRestorePass = (req, res) => {
@@ -21,6 +26,7 @@ const formRestorePass = (req, res) => {
 
 export{
     formLogin,
-    formRegsitry,
+    formRegistry,
+    saveRegistry,
     formRestorePass
 }

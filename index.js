@@ -1,8 +1,13 @@
 import express from 'express'
 import router  from './routes/user-routes.js'
 import db from './config/db.js'
+
 // Create app
 const app = express()
+
+
+// Enable bodyParser for read data in forms 
+app.use(express.urlencoded({extended: true}))
 
 // Sincronized dbs
 try {
@@ -21,7 +26,6 @@ app.use(express.static('public'))
 
 // Routing user authentication
 app.use('/auth', router)
-
 
 
 // Config express
