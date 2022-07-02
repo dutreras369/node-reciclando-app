@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended: true}))
 // Sincronized dbs
 try {
     db.authenticate();
+    db.sync();
     console.log('Contectado al servidor')  
 } catch (error) {
     console.log(error)
