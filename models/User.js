@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize';
+import bcrypt from 'bcrypt'
 import db from '../config/db.js'
 
 const User = db.define('users', {
@@ -25,9 +26,12 @@ const User = db.define('users', {
     },
     {
         hooks: {
-            beforeCreate: function (user) {
+            beforeCreate: async function (user) {
                 user.createdAt = new Date();
                 user.updatedAt = new Date();
+
+                const salt = await bcrypt.genSalt(10)
+                user.password = await bcrypt.hash(user.password, salt)
             },
             beforeUpdate: function (user) {
                 user.updatedAt = new Date();
