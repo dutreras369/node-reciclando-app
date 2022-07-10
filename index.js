@@ -1,4 +1,6 @@
 import express from 'express'
+import csrf from 'csurf'
+import cookieParser from 'cookie-parser'
 import router  from './routes/user-routes.js'
 import db from './config/db.js'
 
@@ -6,8 +8,14 @@ import db from './config/db.js'
 const app = express()
 
 
-// Enable bodyParser for read data in forms 
+// Enabled bodyParser for read data in forms 
 app.use(express.urlencoded({extended: true}))
+
+// Enabled Coockie Parser 
+app.use( cookieParser() )
+
+// Enabled CSRF
+app.use( csrf({ cookie: true }))
 
 // Sincronized dbs
 try {
@@ -30,7 +38,7 @@ app.use('/auth', router)
 
 
 // Config express
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.listen(port, () => {
     console.log("Server on in port: " + port )
