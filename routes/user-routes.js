@@ -1,5 +1,6 @@
 import express from 'express'
-import { formLogin, formRegistry, formRestorePass, saveRegistry, confirmAccount } from '../controllers/user-controller.js'
+import { formLogin, formRegistry, formRestorePass, saveRegistry, 
+    confirmAccount, ressetPass, validToken, newPassword } from '../controllers/user-controller.js'
 
 const router = express()
 
@@ -11,7 +12,12 @@ router.get('/confirmar-cuenta/:token', confirmAccount)
 
 router.post('/registrar', saveRegistry)
 
-
 router.get('/restablecer-password', formRestorePass)
+
+router.post('/reset-pass', ressetPass)
+
+router.get('/olvide-password/:token', validToken )
+
+router.post('/olvide-password/:token', newPassword )
 
 export default router;
