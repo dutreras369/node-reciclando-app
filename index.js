@@ -7,7 +7,6 @@ import db from './config/db.js'
 // Create app
 const app = express()
 
-
 // Enabled bodyParser for read data in forms 
 app.use(express.urlencoded({extended: true}))
 

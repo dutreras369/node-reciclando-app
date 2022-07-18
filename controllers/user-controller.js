@@ -7,10 +7,54 @@ import { emailRegistry, restorePass } from '../helpers/emails.js'
 const formLogin = (req, res) => {
 
     res.render('auth/login', {
-        page: "Iniciar Sesión"
+        page: "Iniciar Sesión",
+        csrfToken: req.csrfToken()
+
     } )
 }
 
+const authenticate = async (req, res) => {
+    await check('email').isEmail().withMessage('El email debe ser valido').run(req)
+    await check('password').notEmpty().withMessage('El password no puede estar vacio').run(req)
+    
+    let result = validationResult(req)
+
+    if(!result.isEmpty()){
+        return res.render('auth/login', {
+            page: "Iniciar Sesión",
+            csrfToken: req.csrfToken(),
+            errors: result.array()
+        })
+    }
+
+    const {email, password} = req.body
+
+    const user = await User.findOne({ where: {email} })
+    
+    if(!user){
+        return res.render('auth/login', {
+            page: "Iniciar Sesión",
+            csrfToken: req.csrfToken(),
+            errors: [{msg: 'El usuario no existe'}]
+        })
+    }
+
+    if(!user.status){
+        return res.render('auth/login', {
+            page: "Iniciar Sesión",
+            csrfToken: req.csrfToken(),
+            errors: [{msg: 'Confirma tu cuenta'}]
+        })
+    }
+
+    if(!user.validPassword(password)){
+        return res.render('auth/login', {
+            page: "Iniciar Sesión",
+            csrfToken: req.csrfToken(),
+            errors: [{msg: 'Usuario o password invalidos'}]
+        })
+    }
+}
 const formRegistry = (req, res) => {
     
     res.render('auth/registry', {
@@ -230,5 +274,6 @@ export{
     formRestorePass, 
     ressetPass,
     validToken,
-    newPassword
+    newPassword,
+    authenticate
 }
