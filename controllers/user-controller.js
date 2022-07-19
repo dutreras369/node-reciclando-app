@@ -1,7 +1,7 @@
 import {check, validationResult} from 'express-validator'
 import bcrypt from 'bcrypt'
 import User from '../models/User.js'
-import { generateId } from '../helpers/token.js'
+import { generateId, generateJWT} from '../helpers/token.js'
 import { emailRegistry, restorePass } from '../helpers/emails.js'
 
 const formLogin = (req, res) => {
@@ -54,6 +54,11 @@ const authenticate = async (req, res) => {
             errors: [{msg: 'Usuario o password invalidos'}]
         })
     }
+
+    // authenticate
+    const token = generateJWT({ id: user.id, name: user.name })
+
+    console.log(token)
 }
 const formRegistry = (req, res) => {
     
