@@ -58,7 +58,10 @@ const authenticate = async (req, res) => {
     // authenticate
     const token = generateJWT({ id: user.id, name: user.name })
 
-    console.log(token)
+    // save token in cookie
+    return res.cookie('_token', token, {
+        httpOnly: true
+    }).redirect('/panel')
 }
 const formRegistry = (req, res) => {
     
