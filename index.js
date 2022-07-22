@@ -1,7 +1,8 @@
 import express from 'express'
 import csrf from 'csurf'
 import cookieParser from 'cookie-parser'
-import router  from './routes/user-routes.js'
+import routerAuth  from './routes/user-routes.js'
+import routerPoint  from './routes/point-routes.js'
 import db from './config/db.js'
 
 // Create app
@@ -33,8 +34,8 @@ app.set('views', './views')
 app.use(express.static('public'))
 
 // Routing user authentication
-app.use('/auth', router)
-
+app.use('/auth', routerAuth)
+app.use('/puntos', routerPoint)
 
 // Config express
 const port = process.env.PORT || 3000

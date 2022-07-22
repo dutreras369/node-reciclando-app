@@ -2,24 +2,24 @@ import express from 'express'
 import { formLogin, formRegistry, formRestorePass, saveRegistry, 
     confirmAccount, ressetPass, validToken, newPassword, authenticate } from '../controllers/user-controller.js'
 
-const router = express()
+const routerAuth = express()
 
-router.get('/login', formLogin)
-router.post('/login', authenticate)
+routerAuth.get('/login', formLogin)
+routerAuth.post('/login', authenticate)
 
 
-router.get('/registrar', formRegistry)
+routerAuth.get('/registrar', formRegistry)
 
-router.get('/confirmar-cuenta/:token', confirmAccount)
+routerAuth.get('/confirmar-cuenta/:token', confirmAccount)
 
-router.post('/registrar', saveRegistry)
+routerAuth.post('/registrar', saveRegistry)
 
-router.get('/restablecer-password', formRestorePass)
+routerAuth.get('/restablecer-password', formRestorePass)
 
-router.post('/reset-pass', ressetPass)
+routerAuth.post('/reset-pass', ressetPass)
 
-router.get('/olvide-password/:token', validToken )
+routerAuth.get('/olvide-password/:token', validToken )
 
-router.post('/olvide-password/:token', newPassword )
+routerAuth.post('/olvide-password/:token', newPassword )
 
-export default router;
+export default routerAuth;
