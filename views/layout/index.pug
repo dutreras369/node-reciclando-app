@@ -6,6 +6,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Reciclando | #{page}
         link(rel="stylesheet", href="/css/app.css")
+        block styles
     
     body.min-h-screen.bg-gray-50
         if session 
@@ -14,4 +15,6 @@ html(lang="en")
         main.mx-auto.container.mt-18.px-2
             block contents
                 
+        block scripts 
+            
             

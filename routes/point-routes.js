@@ -1,8 +1,9 @@
 import express from 'express'
-import { admin } from '../controllers/point-controller.js'
+import { panel, createPoint } from '../controllers/point-controller.js'
 
 const routerPoint = express.Router()
 
-routerPoint.get('/', admin)
+routerPoint.get('/', panel)
+routerPoint.get('/crear', createPoint)
 
 export default routerPoint 
