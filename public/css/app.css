@@ -541,14 +541,11 @@ video {
     max-width: 1536px;
   }
 }
-.m-2 {
-  margin: 0.5rem;
-}
-.m-4 {
-  margin: 1rem;
-}
 .m-8 {
   margin: 2rem;
+}
+.m-2 {
+  margin: 0.5rem;
 }
 .my-10 {
   margin-top: 2.5rem;

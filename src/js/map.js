@@ -36,10 +36,7 @@
             document.querySelector('#street').value = res?.address?.Address ?? '';
             document.querySelector('#lat').value = res?.latlng?.lat ?? '';
             document.querySelector('#lng').value = res?.latlng?.lng ?? '';
-
-
         })
-        
     })
 
 })()
